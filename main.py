@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
-import resource
+# import resource
 from time import perf_counter
 from npuzzle.visualizer import visualizer
 from npuzzle.search import a_star_search, ida_star_search
@@ -92,8 +92,8 @@ if __name__ == "__main__":
         print(color("red", "this puzzle is not solvable"))
         sys.exit(0)
 
-    maxrss = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-    print(color("red", "max rss before search:"), maxrss)
+    # maxrss = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+    # print(color("red", "max rss before search:"), maxrss)
 
     t_start = perf_counter()
     if args.ida:
@@ -102,8 +102,8 @@ if __name__ == "__main__":
         res = a_star_search(puzzle, solved, size, HEURISTIC, TRANSITION_COST)
     t_delta = perf_counter() - t_start
 
-    maxrss = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-    print(color("red", "max rss after search: "), maxrss)
+    # maxrss = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+    # print(color("red", "max rss after search: "), maxrss)
 
     print(color("yellow", "search duration:") + f" {t_delta:.4f} second(s)")
     success, steps, complexity = res
